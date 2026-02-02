@@ -9,8 +9,7 @@ const appFrames = [
     subtitle: "Context Surface", 
     icon: <Layout size={20} />,
     desc: "Intent-driven posts with a clean, distraction-free reading environment.",
-    // REPLACE WITH YOUR IMAGE: "/assets/home_feed.png"
-    img: "https://images.unsplash.com/photo-1595856942057-07490212f462?q=80&w=1000&auto=format&fit=crop" 
+    img: "/Home.jpg"
   },
   { 
     title: "Trending Pulse", 
