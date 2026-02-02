@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Tarang - Product Design Case Study</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        /* Default Dark (OLED) */
+        --bg-core: #050505;
+        --bg-glass: rgba(255, 255, 255, 0.02);
+        --text-primary: #ffffff;
+        --text-secondary: #d1d5db;
+        --border-color: rgba(255, 255, 255, 0.1);
+        --brand-primary: #6366f1; /* Indigo */
+        --brand-secondary: #4f46e5;
+        --semantic-success: #10b981;
+        --semantic-danger: #ef4444;
+        --semantic-warning: #f59e0b;
+        --font-body: 'Inter', sans-serif;
+        --line-height-mod: 1.5;
+      }
+
+      [data-theme="light"] {
+        --bg-core: #ffffff;
+        --bg-glass: rgba(255, 255, 255, 0.8);
+        --text-primary: #111827;
+        --text-secondary: #374151; /* Darker gray for readability */
+        --border-color: rgba(0, 0, 0, 0.15);
+        --brand-primary: #4f46e5;
+        --brand-secondary: #4338ca;
+      }
+
+      [data-theme="colorblind"] {
+        --bg-core: #ffffff;
+        --bg-glass: rgba(0, 0, 0, 0.05);
+        --text-primary: #000000;
+        --text-secondary: #1f2937;
+        --border-color: #000000;
+        --brand-primary: #2563eb;
+        --semantic-success: #2563eb;
+        --semantic-danger: #d97706;
+        --semantic-warning: #d97706;
+      }
+
+      [data-theme="calm"] {
+        --bg-core: #F5F5F0;
+        --bg-glass: rgba(230, 230, 225, 0.5);
+        --text-primary: #4A4A40;
+        --text-secondary: #707060;
+        --border-color: rgba(100, 100, 90, 0.1);
+        --brand-primary: #8E8E80;
+        --brand-secondary: #707060;
+        --line-height-mod: 1.8;
+      }
+
+      [data-theme="eco"] {
+        --bg-core: #000000;
+        --bg-glass: #111111;
+        --text-primary: #B0B0B0;
+        --text-secondary: #707070;
+        --border-color: #333333;
+        --brand-primary: #404040;
+        --brand-secondary: #303030;
+      }
+
+      body {
+        background-color: var(--bg-core) !important;
+        color: var(--text-primary) !important;
+        font-family: var(--font-body) !important;
+        line-height: var(--line-height-mod) !important;
+        transition: background-color 0.4s ease, color 0.4s ease;
+        min-height: 100vh;
+        /* Fallback for browsers that don't support dvh */
+        min-height: 100dvh;
+        overflow-x: hidden; /* Prevent horizontal scroll on mobile */
+      }
+      
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Space Grotesk', sans-serif;
+        color: var(--text-primary) !important;
+      }
+
+      /* Mapping Tailwind Classes to CSS Variables for dynamic themes */
+      .bg-black, .bg-\[\#0D0D0D\], .bg-\[\#0A0A0A\], .bg-\[\#080808\], .bg-\[\#050505\], .bg-\[\#0F0F0F\], .bg-\[\#111\] {
+          background-color: var(--bg-core) !important;
+      }
+      
+      .text-white, .text-gray-100 { color: var(--text-primary) !important; }
+      .text-gray-200, .text-gray-300, .text-gray-400, .text-gray-500 { color: var(--text-secondary) !important; }
+      
+      .text-indigo-300, .text-indigo-400, .text-indigo-500 { color: var(--brand-primary) !important; }
+      .bg-indigo-500, .bg-indigo-600 { background-color: var(--brand-primary) !important; }
+      
+      .border-white\/5, .border-white\/10, .border-white\/20, .border-indigo-500\/30 {
+          border-color: var(--border-color) !important;
+      }
+
+      /* Glass Panel Adaptation */
+      .glass-panel {
+        background: var(--bg-glass) !important;
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--border-color) !important;
+        transition: background 0.4s, border-color 0.4s;
+      }
+      
+      [data-theme="light"] .glass-panel {
+          box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      }
+      
+      /* Accessibility & Contrast Fixes */
+      [data-theme="light"] .text-glow {
+          text-shadow: none !important;
+      }
+
+      [data-theme="light"] .bg-white\/5, [data-theme="light"] .bg-white\/10 {
+          background-color: rgba(0, 0, 0, 0.05) !important;
+      }
+
+      /* Eco Mode Specifics */
+      [data-theme="eco"] *, [data-theme="eco"] *::before, [data-theme="eco"] *::after {
+        animation: none !important;
+        transition: none !important;
+        filter: none !important;
+        box-shadow: none !important;
+      }
+      [data-theme="eco"] .eco-hidden { display: none !important; }
+      [data-theme="eco"] img { display: none !important; }
+      
+      .eco-only { display: none; }
+      [data-theme="eco"] .eco-only {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          width: 100%; height: 100%;
+          background: #000; border: 1px dashed #333;
+          color: #444; padding: 1rem; text-align: center;
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: var(--bg-core); }
+      ::-webkit-scrollbar-thumb { background: var(--brand-primary); border-radius: 4px; }
+      
+      .glass-nav {
+        background: var(--bg-glass);
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--border-color);
+      }
+      
+      /* Mobile text adjustments */
+      @media (max-width: 640px) {
+        .text-6xl { font-size: 3.5rem !important; }
+        .text-4xl { font-size: 2.25rem !important; }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "@react-three/fiber": "https://esm.sh/@react-three/fiber@^9.5.0",
+    "three": "https://esm.sh/three@^0.182.0",
+    "gsap/": "https://esm.sh/gsap@^3.14.2/",
+    "gsap": "https://esm.sh/gsap@^3.14.2"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
