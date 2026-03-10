@@ -12,6 +12,7 @@ import { Gallery } from './components/Gallery';
 import { ThemeToggle } from './components/ThemeToggle';
 import { PortfolioNarrative } from './components/PortfolioNarrative';
 import { LivePreviewModal } from './components/LivePreviewModal';
+import { PhaseTwoRoadmap } from './components/PhaseTwoRoadmap';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -49,7 +50,10 @@ const App: React.FC = () => {
         <ProcessGrit />
         <DesignSystem />
         <ImpactSection />
-        <Gallery />
+        <div className="w-full py-20">
+          <Gallery />
+        </div>
+        <PhaseTwoRoadmap />
       </main>
 
       {/* High-Fidelity Prototype Modal */}

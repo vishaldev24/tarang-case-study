@@ -9,7 +9,8 @@ const appFrames = [
     subtitle: "Context Surface", 
     icon: <Layout size={20} />,
     desc: "Intent-driven posts with a clean, distraction-free reading environment.",
-    img: "/Home.jpg"
+    // REPLACE WITH YOUR IMAGE: "/assets/home_feed.png"
+    img: "https://img.sanishtech.com/u/b0266f170972c926fc31153597b7b88e.png" 
   },
   { 
     title: "Trending Pulse", 
@@ -51,27 +52,54 @@ export const Gallery: React.FC = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const totalWidth = sliderRef.current ? sliderRef.current.scrollWidth - window.innerWidth : 0;
-      
+      // Use a function for totalWidth to ensure it's calculated correctly during scroll
+      const getScrollAmount = () => {
+        const sliderWidth = sliderRef.current?.scrollWidth || 0;
+        return -(sliderWidth - window.innerWidth);
+      };
+
       gsap.to(sliderRef.current, {
-        x: -totalWidth,
+        x: getScrollAmount,
         ease: "none",
         scrollTrigger: {
           trigger: containerRef.current,
           pin: true,
           scrub: 1,
-          end: () => "+=" + sliderRef.current!.scrollWidth,
+          invalidateOnRefresh: true,
+          start: "top top",
+          end: () => "+=" + (sliderRef.current?.scrollWidth || window.innerWidth) * 1.2,
         }
       });
     }, containerRef);
-    return () => ctx.revert();
+    
+    // Refresh ScrollTrigger after a short delay to account for image loading
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 1000);
+
+    return () => {
+      ctx.revert();
+      clearTimeout(timer);
+    };
   }, []);
 
   return (
-    <section ref={containerRef} className="w-full h-screen overflow-hidden flex flex-col justify-center relative bg-[#0D0D0D]">
+    <section id="gallery" ref={containerRef} className="w-full h-screen min-h-[700px] overflow-hidden flex flex-col justify-center relative bg-[#0D0D0D] py-20">
       <div className="absolute top-12 left-4 md:left-20 z-20 pointer-events-none">
         <h2 className="text-3xl md:text-5xl font-bold text-white mb-2">App Prototype</h2>
         <p className="text-indigo-400 font-mono text-sm tracking-widest">HIGH FIDELITY SCREENS &bull; FIGMA EXPORT</p>
+      </div>
+
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 opacity-50 animate-bounce md:hidden">
+        <span className="text-[10px] uppercase tracking-[0.2em] text-white">Scroll Down to Explore</span>
+        <div className="w-px h-8 bg-gradient-to-b from-indigo-500 to-transparent"></div>
+      </div>
+
+      <div className="hidden md:flex absolute bottom-12 right-20 z-20 items-center gap-4 text-white/30 font-mono text-[10px] uppercase tracking-[0.3em]">
+        <span>Scroll Down to Slide</span>
+        <div className="w-24 h-px bg-white/10 relative overflow-hidden">
+          <div className="absolute inset-0 bg-indigo-500/50 animate-slide-right"></div>
+        </div>
       </div>
 
       <div ref={sliderRef} className="flex gap-8 md:gap-16 px-4 md:px-20 items-center h-[65vh] md:h-[80vh]">
@@ -99,7 +127,9 @@ export const Gallery: React.FC = () => {
                   <img 
                     src={frame.img} 
                     alt={frame.title} 
-                    className="w-full h-full object-cover eco-hidden"
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover"
+                    onLoad={() => ScrollTrigger.refresh()}
                   />
                   
                   {/* Glossy Reflection Overlay */}

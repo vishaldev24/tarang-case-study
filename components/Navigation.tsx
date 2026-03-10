@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Home, Shield, Layers, User, Palette, Leaf, Play, ExternalLink } from 'lucide-react';
+import { Home, Shield, Layers, User, Palette, Leaf, Play, ExternalLink, Smartphone } from 'lucide-react';
+import { Logo } from './Logo';
 
 interface NavigationProps {
   onLaunchDemo?: () => void;
@@ -51,7 +52,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onLaunchDemo }) => {
           className={`group flex flex-col items-center gap-1 relative focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-full p-2 md:p-1 ${activeSection === 'home' ? 'text-indigo-400' : ''}`}
           aria-label="Scroll to Home section"
         >
-          <Home size={24} className="text-gray-300 group-hover:text-indigo-400 transition-colors duration-300 md:w-[22px] md:h-[22px]" aria-hidden="true" />
+          <Logo className="w-6 h-6 md:w-5 md:h-5 object-contain group-hover:scale-110 transition-transform" />
           <span className="hidden md:block text-[9px] text-indigo-300 opacity-0 group-hover:opacity-100 transition-opacity absolute -top-8 tracking-widest uppercase">Home</span>
         </button>
 
@@ -95,6 +96,15 @@ export const Navigation: React.FC<NavigationProps> = ({ onLaunchDemo }) => {
            <div className="absolute top-1 right-1 md:-top-1 md:-right-1 w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" aria-hidden="true"></div>
           <Leaf size={24} className="text-gray-300 group-hover:text-emerald-400 transition-colors duration-300 md:w-[22px] md:h-[22px]" aria-hidden="true" />
            <span className="hidden md:block text-[9px] text-indigo-300 opacity-0 group-hover:opacity-100 transition-opacity absolute -top-8 tracking-widest uppercase">Impact</span>
+        </button>
+
+        <button 
+          onClick={() => scrollToSection('gallery')}
+          className={`group flex flex-col items-center gap-1 relative focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-full p-2 md:p-1 ${activeSection === 'gallery' ? 'text-indigo-400' : ''}`}
+          aria-label="Scroll to App Prototype section"
+        >
+          <Smartphone size={24} className="text-gray-300 group-hover:text-indigo-400 transition-colors duration-300 md:w-[22px] md:h-[22px]" aria-hidden="true" />
+           <span className="hidden md:block text-[9px] text-indigo-300 opacity-0 group-hover:opacity-100 transition-opacity absolute -top-8 tracking-widest uppercase">Prototype</span>
         </button>
 
         <button 

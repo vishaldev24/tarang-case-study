@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ArrowDown, Play, ExternalLink } from 'lucide-react';
+import { Logo } from './Logo';
 
 interface HeroProps {
   onLaunchDemo: () => void;
@@ -69,36 +70,8 @@ export const Hero: React.FC<HeroProps> = ({ onLaunchDemo }) => {
         <div ref={logoRef} className="relative group cursor-default pointer-events-auto mb-8 md:mb-10">
           <div className="absolute inset-0 bg-indigo-500 blur-[60px] md:blur-[80px] opacity-20 rounded-full animate-pulse eco-hidden"></div>
           
-          <div className="w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 relative z-10 drop-shadow-2xl filter hover:brightness-110 transition-all duration-500 hover:scale-105">
-             <svg 
-                viewBox="0 0 200 200" 
-                fill="none" 
-                xmlns="http://www.w3.org/2000/svg" 
-                className="w-full h-full"
-                role="img"
-                aria-label="Tarang Brand Logo: Abstract waves in blue, green, and orange."
-             >
-                <defs>
-                  <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#0EA5E9" />
-                    <stop offset="100%" stopColor="#3B82F6" />
-                  </linearGradient>
-                  <linearGradient id="greenGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#22C55E" />
-                    <stop offset="100%" stopColor="#10B981" />
-                  </linearGradient>
-                  <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#F97316" />
-                    <stop offset="100%" stopColor="#EF4444" />
-                  </linearGradient>
-                  <filter id="shadow">
-                    <feDropShadow dx="0" dy="4" stdDeviation="6" floodOpacity="0.4"/>
-                  </filter>
-                </defs>
-                <path d="M20 70 C 60 20, 140 20, 180 60 C 190 68, 180 80, 170 75 C 140 50, 80 50, 40 90 C 30 100, 10 90, 20 70 Z" fill="url(#blueGradient)" filter="url(#shadow)"/>
-                <path d="M20 110 C 60 60, 140 60, 180 100 C 190 108, 180 120, 170 115 C 140 90, 80 90, 40 130 C 30 140, 10 130, 20 110 Z" fill="url(#greenGradient)" filter="url(#shadow)"/>
-                <path d="M30 150 C 70 100, 150 100, 180 140 C 190 148, 180 160, 170 155 C 140 130, 80 130, 50 170 C 40 180, 20 170, 30 150 Z" fill="url(#orangeGradient)" filter="url(#shadow)"/>
-             </svg>
+          <div className="w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 relative z-10 drop-shadow-2xl filter transition-all duration-500 hover:scale-105">
+             <Logo className="w-full h-full object-contain" />
           </div>
         </div>
 
