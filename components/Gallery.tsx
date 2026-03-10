@@ -1,7 +1,7 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Layout, Activity, Aperture, PlayCircle, UserCircle, Smartphone } from 'lucide-react';
+import { Layout, Activity, Aperture, PlayCircle, UserCircle, ChevronLeft, ChevronRight, X } from 'lucide-react';
 
 const appFrames = [
   { 
@@ -9,46 +9,142 @@ const appFrames = [
     subtitle: "Context Surface", 
     icon: <Layout size={20} />,
     desc: "Intent-driven posts with a clean, distraction-free reading environment.",
-    // REPLACE WITH YOUR IMAGE: "/assets/home_feed.png"
-    img: "https://img.sanishtech.com/u/b0266f170972c926fc31153597b7b88e.png" 
+    img: "/Home.png" 
   },
   { 
-    title: "Trending Pulse", 
-    subtitle: "Discovery Logic", 
-    icon: <Activity size={20} />,
-    desc: "Horizontal scrolling cards for trending topics and people, separating noise from signal.",
-    // REPLACE WITH YOUR IMAGE: "/assets/trending.png"
-    img: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop" 
-  },
-  { 
-    title: "Lens Explore", 
+    title: "Lens", 
     subtitle: "Visual Search", 
     icon: <Aperture size={20} />,
     desc: "Masonry grid layout for immersive visual discovery (e.g., Nature, Food, Travel).",
-    // REPLACE WITH YOUR IMAGE: "/assets/lens_grid.png"
-    img: "https://images.unsplash.com/photo-1611162616475-46b635cb6868?q=80&w=1000&auto=format&fit=crop" 
+    img: "/Lens.jpg" 
   },
   { 
-    title: "Reels Player", 
+    title: "Lens Explore", 
+    subtitle: "Discovery", 
+    icon: <Activity size={20} />,
+    desc: "Explore new content with visual search and recommendations.",
+    img: "/Lens explore screen.jpg" 
+  },
+  { 
+    title: "Create Story", 
+    subtitle: "Content Creation", 
+    icon: <PlayCircle size={20} />,
+    desc: "Create and share stories with your network.",
+    img: "/Create story.png" 
+  },
+  { 
+    title: "Reels", 
     subtitle: "Focus Mode", 
     icon: <PlayCircle size={20} />,
     desc: "Full-screen playback with minimal overlays to prioritize content engagement.",
-    // REPLACE WITH YOUR IMAGE: "/assets/reels.png"
-    img: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=1000&auto=format&fit=crop" 
+    img: "/Reels.png" 
   },
   { 
     title: "User Profile", 
     subtitle: "Identity System", 
     icon: <UserCircle size={20} />,
     desc: "Unified persona with stats, grid/reel tabs, and a clean biography section.",
-    // REPLACE WITH YOUR IMAGE: "/assets/profile.png"
-    img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000&auto=format&fit=crop" 
+    img: "/Profile.png" 
+  },
+  { 
+    title: "Shield Settings", 
+    subtitle: "Privacy Control", 
+    icon: <Activity size={20} />,
+    desc: "Manage your privacy settings and app security.",
+    img: "/Settings.jpg",
+    carousel: [
+      "/1-shield screenoff.jpg",
+      "/2-shield custom on.jpg",
+      "/shield hidden screen.jpg"
+    ]
   }
 ];
+
+// Carousel Modal Component
+const CarouselModal: React.FC<{
+  frame: typeof appFrames[0];
+  onClose: () => void;
+}> = ({ frame, onClose }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const carouselImages = frame.carousel || [];
+  
+  const goToPrev = () => {
+    setCurrentIndex((prev) => (prev === 0 ? carouselImages.length - 1 : prev - 1));
+  };
+  
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev === carouselImages.length - 1 ? 0 : prev + 1));
+  };
+
+  if (carouselImages.length === 0) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md" onClick={onClose}>
+      <button 
+        className="absolute top-4 right-4 p-2 text-white/70 hover:text-white transition-colors"
+        onClick={onClose}
+      >
+        <X size={32} />
+      </button>
+      
+      <div className="relative w-full max-w-4xl mx-4" onClick={(e) => e.stopPropagation()}>
+        <div className="relative aspect-[9/19.5] bg-[#111] rounded-2xl overflow-hidden shadow-2xl">
+          <img 
+            src={carouselImages[currentIndex]} 
+            alt={`${frame.title} - ${currentIndex + 1}`}
+            className="w-full h-full object-contain bg-black"
+          />
+          
+          {/* Navigation Arrows */}
+          {carouselImages.length > 1 && (
+            <>
+              <button 
+                className="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-black/50 hover:bg-black/70 rounded-full text-white transition-colors"
+                onClick={goToPrev}
+              >
+                <ChevronLeft size={24} />
+              </button>
+              <button 
+                className="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-black/50 hover:bg-black/70 rounded-full text-white transition-colors"
+                onClick={goToNext}
+              >
+                <ChevronRight size={24} />
+              </button>
+            </>
+          )}
+        </div>
+        
+        {/* Dots Indicator */}
+        {carouselImages.length > 1 && (
+          <div className="flex justify-center gap-2 mt-4">
+            {carouselImages.map((_, idx) => (
+              <button
+                key={idx}
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  idx === currentIndex ? 'bg-indigo-500' : 'bg-white/30'
+                }`}
+                onClick={() => setCurrentIndex(idx)}
+              />
+            ))}
+          </div>
+        )}
+        
+        <p className="text-center text-white/60 mt-2 text-sm">
+          {currentIndex + 1} / {carouselImages.length}
+        </p>
+      </div>
+    </div>
+  );
+};
 
 export const Gallery: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [activeCarousel, setActiveCarousel] = useState<typeof appFrames[0] | null>(null);
+  const dragStartX = useRef(0);
+  const currentTranslate = useRef(0);
+  const prevTranslate = useRef(0);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -83,8 +179,99 @@ export const Gallery: React.FC = () => {
     };
   }, []);
 
+  // Drag handlers
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setIsDragging(true);
+    dragStartX.current = e.clientX;
+    if (sliderRef.current) {
+      const style = window.getComputedStyle(sliderRef.current);
+      const matrix = new WebKitCSSMatrix(style.transform);
+      currentTranslate.current = matrix.m41;
+      prevTranslate.current = currentTranslate.current;
+    }
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    
+    const deltaX = e.clientX - dragStartX.current;
+    const newTranslate = prevTranslate.current + deltaX;
+    
+    if (sliderRef.current) {
+      sliderRef.current.style.transition = 'none';
+      sliderRef.current.style.transform = `translateX(${newTranslate}px)`;
+      currentTranslate.current = newTranslate;
+    }
+  };
+
+  const handleMouseUp = () => {
+    if (!isDragging) return;
+    setIsDragging(false);
+    prevTranslate.current = currentTranslate.current;
+    
+    // Add momentum/snap to nearest item
+    if (sliderRef.current) {
+      const itemWidth = 280 + 48; // width + gap
+      const nearestIndex = Math.round(Math.abs(currentTranslate.current) / itemWidth);
+      const snappedPosition = -nearestIndex * itemWidth;
+      
+      sliderRef.current.style.transition = 'transform 0.3s ease-out';
+      sliderRef.current.style.transform = `translateX(${snappedPosition}px)`;
+      prevTranslate.current = snappedPosition;
+      currentTranslate.current = snappedPosition;
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (isDragging) {
+      handleMouseUp();
+    }
+  };
+
+  // Touch handlers for mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setIsDragging(true);
+    dragStartX.current = e.touches[0].clientX;
+    if (sliderRef.current) {
+      const style = window.getComputedStyle(sliderRef.current);
+      const matrix = new WebKitCSSMatrix(style.transform);
+      currentTranslate.current = matrix.m41;
+      prevTranslate.current = currentTranslate.current;
+    }
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging) return;
+    
+    const deltaX = e.touches[0].clientX - dragStartX.current;
+    const newTranslate = prevTranslate.current + deltaX;
+    
+    if (sliderRef.current) {
+      sliderRef.current.style.transition = 'none';
+      sliderRef.current.style.transform = `translateX(${newTranslate}px)`;
+      currentTranslate.current = newTranslate;
+    }
+  };
+
+  const handleTouchEnd = () => {
+    handleMouseUp();
+  };
+
   return (
-    <section id="gallery" ref={containerRef} className="w-full h-screen min-h-[700px] overflow-hidden flex flex-col justify-center relative bg-[#0D0D0D] py-20">
+    <section 
+      id="gallery" 
+      ref={containerRef} 
+      className="w-full h-screen min-h-[700px] overflow-hidden flex flex-col justify-center relative bg-[#0D0D0D] py-20 cursor-grab active:cursor-grabbing"
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseLeave}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+
       <div className="absolute top-12 left-4 md:left-20 z-20 pointer-events-none">
         <h2 className="text-3xl md:text-5xl font-bold text-white mb-2">App Prototype</h2>
         <p className="text-indigo-400 font-mono text-sm tracking-widest">HIGH FIDELITY SCREENS &bull; FIGMA EXPORT</p>
@@ -102,38 +289,43 @@ export const Gallery: React.FC = () => {
         </div>
       </div>
 
-      <div ref={sliderRef} className="flex gap-8 md:gap-16 px-4 md:px-20 items-center h-[65vh] md:h-[80vh]">
+      <div ref={sliderRef} className="flex gap-8 md:gap-12 px-4 md:px-20 items-center h-[50vh] md:h-[60vh]">
         {appFrames.map((frame, index) => (
           <div 
             key={index} 
-            className="flex-shrink-0 w-[280px] md:w-[350px] h-full flex flex-col relative group"
+            className="flex-shrink-0 w-[220px] md:w-[280px] h-full flex flex-col relative group"
           >
              {/* Frame Container */}
             <div className="flex-grow relative transition-all duration-500 group-hover:scale-[1.02] transform-gpu">
                
-               {/* Phone Bezel / Screen Area */}
-               <div className="w-full h-full bg-[#111] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden relative border-[4px] md:border-[6px] border-[#222] shadow-2xl">
-                  {/* Status Bar Shim */}
-                  <div className="absolute top-0 w-full h-6 bg-black/20 z-20 backdrop-blur-sm pointer-events-none"></div>
-                  
-                  {/* Eco Mode Placeholder */}
-                  <div className="eco-only absolute inset-0 z-30 bg-[#050505] flex flex-col items-center justify-center border border-white/10">
-                      <Smartphone className="mb-4 text-emerald-600" size={32} />
-                      <span className="text-emerald-500 font-bold mb-2 text-sm">Low Power Mode</span>
-                      <p className="text-[10px] text-gray-500 uppercase tracking-widest">{frame.title}</p>
-                  </div>
-
+               {/* Simple Image Container */}
+               <div className="w-full h-full bg-[#111] rounded-lg overflow-hidden relative shadow-2xl">
                   {/* Actual Image */}
                   <img 
                     src={frame.img} 
                     alt={frame.title} 
                     referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover"
-                    onLoad={() => ScrollTrigger.refresh()}
+                    loading="eager"
+                    decoding="sync"
+                    fetchPriority="high"
+                    className={`gallery-img w-full h-full object-contain bg-black ${frame.carousel ? 'cursor-pointer' : ''}`}
+                    onClick={() => frame.carousel && setActiveCarousel(frame)}
+                    onLoad={(e) => {
+                      console.log('Image loaded:', frame.img);
+                      ScrollTrigger.refresh();
+                    }}
+                    onError={(e) => {
+                      console.error('Image failed to load:', frame.img, e);
+                      (e.target as HTMLImageElement).style.display = 'none';
+                    }}
                   />
-                  
-                  {/* Glossy Reflection Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 opacity-50 pointer-events-none z-10 rounded-[2.5rem]"></div>
+                  {/* Carousel Indicator */}
+                  {frame.carousel && (
+                    <div className="absolute bottom-2 right-2 bg-indigo-500/80 text-white text-xs px-2 py-1 rounded-full flex items-center gap-1">
+                      <span>{frame.carousel.length}</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12h20M2 12l5-5m-5 5 5 5"/></svg>
+                    </div>
+                  )}
                </div>
             </div>
 
@@ -151,6 +343,14 @@ export const Gallery: React.FC = () => {
         {/* End Spacer */}
         <div className="w-[10vw]"></div>
       </div>
+
+      {/* Carousel Modal */}
+      {activeCarousel && (
+        <CarouselModal 
+          frame={activeCarousel} 
+          onClose={() => setActiveCarousel(null)} 
+        />
+      )}
     </section>
   );
 };

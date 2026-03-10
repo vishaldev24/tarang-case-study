@@ -1,4 +1,5 @@
 import React from 'react';
+import logoSvg from '../assets/Icons/Adobe Express - file 3.svg';
 
 interface LogoProps {
   className?: string;
@@ -7,12 +8,11 @@ interface LogoProps {
 export const Logo: React.FC<LogoProps> = ({ className }) => {
   return (
     <img 
-      src="https://img.sanishtech.com/u/a914bdb2a094951e070661d722c41a2f.png" 
+      src={logoSvg}
       alt="Tarang Logo" 
       className={`${className} transition-all duration-500 hover:grayscale group-hover:grayscale cursor-pointer`}
       loading="lazy"
       style={{ maxWidth: '100%', height: 'auto' }}
-      referrerPolicy="no-referrer"
     />
   );
 };

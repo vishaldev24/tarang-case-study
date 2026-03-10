@@ -130,7 +130,8 @@
         box-shadow: none !important;
       }
       [data-theme="eco"] .eco-hidden { display: none !important; }
-      [data-theme="eco"] img { display: none !important; }
+      /* Allow gallery images to show in eco mode */
+      [data-theme="eco"] .gallery-img { display: block !important; }
       
       .eco-only { display: none; }
       [data-theme="eco"] .eco-only {
