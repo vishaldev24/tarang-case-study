@@ -50,98 +50,38 @@ const appFrames = [
     title: "Shield Settings", 
     subtitle: "Privacy Control", 
     icon: <Activity size={20} />,
-    desc: "Manage your privacy settings and app security.",
-    img: "/Settings.jpg",
-    carousel: [
-      "/1-shield screenoff.jpg",
-      "/2-shield custom on.jpg",
-      "/shield hidden screen.jpg"
-    ]
+    desc: "Manage privacy settings with granular controls.",
+    img: "/Settings.jpg"
+  },
+  { 
+    title: "Shield Screen Off", 
+    subtitle: "Default State", 
+    icon: <Activity size={20} />,
+    desc: "Shield automatically engages when screen is off.",
+    img: "/shield screenoff.jpg"
+  },
+  { 
+    title: "Shield Custom On", 
+    subtitle: "Custom Mode", 
+    icon: <Activity size={20} />,
+    desc: "User-configured shield settings active.",
+    img: "/shield custom on.jpg"
+  },
+  { 
+    title: "Shield Hidden", 
+    subtitle: "Hidden Mode", 
+    icon: <Activity size={20} />,
+    desc: "Shield operating invisibly in background.",
+    img: "/shield hidden screen.jpg"
   }
 ];
 
-// Carousel Modal Component
-const CarouselModal: React.FC<{
-  frame: typeof appFrames[0];
-  onClose: () => void;
-}> = ({ frame, onClose }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const carouselImages = frame.carousel || [];
-  
-  const goToPrev = () => {
-    setCurrentIndex((prev) => (prev === 0 ? carouselImages.length - 1 : prev - 1));
-  };
-  
-  const goToNext = () => {
-    setCurrentIndex((prev) => (prev === carouselImages.length - 1 ? 0 : prev + 1));
-  };
 
-  if (carouselImages.length === 0) return null;
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md" onClick={onClose}>
-      <button 
-        className="absolute top-4 right-4 p-2 text-white/70 hover:text-white transition-colors"
-        onClick={onClose}
-      >
-        <X size={32} />
-      </button>
-      
-      <div className="relative w-full max-w-4xl mx-4" onClick={(e) => e.stopPropagation()}>
-        <div className="relative aspect-[9/19.5] bg-[#111] rounded-2xl overflow-hidden shadow-2xl">
-          <img 
-            src={carouselImages[currentIndex]} 
-            alt={`${frame.title} - ${currentIndex + 1}`}
-            className="w-full h-full object-contain bg-black"
-          />
-          
-          {/* Navigation Arrows */}
-          {carouselImages.length > 1 && (
-            <>
-              <button 
-                className="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-black/50 hover:bg-black/70 rounded-full text-white transition-colors"
-                onClick={goToPrev}
-              >
-                <ChevronLeft size={24} />
-              </button>
-              <button 
-                className="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-black/50 hover:bg-black/70 rounded-full text-white transition-colors"
-                onClick={goToNext}
-              >
-                <ChevronRight size={24} />
-              </button>
-            </>
-          )}
-        </div>
-        
-        {/* Dots Indicator */}
-        {carouselImages.length > 1 && (
-          <div className="flex justify-center gap-2 mt-4">
-            {carouselImages.map((_, idx) => (
-              <button
-                key={idx}
-                className={`w-2 h-2 rounded-full transition-colors ${
-                  idx === currentIndex ? 'bg-indigo-500' : 'bg-white/30'
-                }`}
-                onClick={() => setCurrentIndex(idx)}
-              />
-            ))}
-          </div>
-        )}
-        
-        <p className="text-center text-white/60 mt-2 text-sm">
-          {currentIndex + 1} / {carouselImages.length}
-        </p>
-      </div>
-    </div>
-  );
-};
 
 export const Gallery: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
-  const [activeCarousel, setActiveCarousel] = useState<typeof appFrames[0] | null>(null);
   const dragStartX = useRef(0);
   const currentTranslate = useRef(0);
   const prevTranslate = useRef(0);
@@ -212,7 +152,7 @@ export const Gallery: React.FC = () => {
     
     // Add momentum/snap to nearest item
     if (sliderRef.current) {
-      const itemWidth = 280 + 48; // width + gap
+      const itemWidth = 220 + 24; // width + gap
       const nearestIndex = Math.round(Math.abs(currentTranslate.current) / itemWidth);
       const snappedPosition = -nearestIndex * itemWidth;
       
@@ -289,11 +229,11 @@ export const Gallery: React.FC = () => {
         </div>
       </div>
 
-      <div ref={sliderRef} className="flex gap-8 md:gap-12 px-4 md:px-20 items-center h-[50vh] md:h-[60vh]">
+      <div ref={sliderRef} className="flex gap-4 md:gap-6 px-2 md:px-12 items-center h-[55vh] md:h-[65vh]"> 
         {appFrames.map((frame, index) => (
           <div 
             key={index} 
-            className="flex-shrink-0 w-[220px] md:w-[280px] h-full flex flex-col relative group"
+            className="flex-shrink-0 w-[180px] md:w-[220px] h-full flex flex-col relative group"
           >
              {/* Frame Container */}
             <div className="flex-grow relative transition-all duration-500 group-hover:scale-[1.02] transform-gpu">
@@ -308,8 +248,7 @@ export const Gallery: React.FC = () => {
                     loading="eager"
                     decoding="sync"
                     fetchPriority="high"
-                    className={`gallery-img w-full h-full object-contain bg-black ${frame.carousel ? 'cursor-pointer' : ''}`}
-                    onClick={() => frame.carousel && setActiveCarousel(frame)}
+                    className="gallery-img w-full h-full object-contain bg-black"
                     onLoad={(e) => {
                       console.log('Image loaded:', frame.img);
                       ScrollTrigger.refresh();
@@ -319,13 +258,6 @@ export const Gallery: React.FC = () => {
                       (e.target as HTMLImageElement).style.display = 'none';
                     }}
                   />
-                  {/* Carousel Indicator */}
-                  {frame.carousel && (
-                    <div className="absolute bottom-2 right-2 bg-indigo-500/80 text-white text-xs px-2 py-1 rounded-full flex items-center gap-1">
-                      <span>{frame.carousel.length}</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12h20M2 12l5-5m-5 5 5 5"/></svg>
-                    </div>
-                  )}
                </div>
             </div>
 
@@ -344,13 +276,6 @@ export const Gallery: React.FC = () => {
         <div className="w-[10vw]"></div>
       </div>
 
-      {/* Carousel Modal */}
-      {activeCarousel && (
-        <CarouselModal 
-          frame={activeCarousel} 
-          onClose={() => setActiveCarousel(null)} 
-        />
-      )}
     </section>
   );
 };

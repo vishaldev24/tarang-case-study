@@ -10,9 +10,6 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({ currentTheme, setTheme
   const themes = [
     { id: 'light', icon: Sun, label: 'Light', desc: 'Daylight readable' },
     { id: 'dark', icon: Moon, label: 'Dark', desc: 'OLED Standard' },
-    { id: 'colorblind', icon: Eye, label: 'Vis', desc: 'Deuteranopia Safe' },
-    { id: 'calm', icon: Coffee, label: 'Calm', desc: 'Low Sensory' },
-    { id: 'eco', icon: Leaf, label: 'Eco', desc: 'Carbon Saver' },
   ];
 
   return (
@@ -34,7 +31,7 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({ currentTheme, setTheme
                 }
               `}
               aria-label={`Switch to ${theme.label} theme: ${theme.desc}`}
-              aria-pressed={isActive}
+
             >
               <Icon size={18} strokeWidth={isActive ? 2.5 : 2} />
               

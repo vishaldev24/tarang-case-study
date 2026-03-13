@@ -19,7 +19,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const App: React.FC = () => {
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState('light');
   const [isDemoOpen, setIsDemoOpen] = useState(false);
 
   useEffect(() => {
