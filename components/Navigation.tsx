@@ -89,7 +89,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onLaunchDemo }) => {
         {/* Live Demo Trigger - Pop-out Style on Mobile */}
         <button 
           onClick={handleDemoClick}
-          className="group flex flex-col items-center justify-center gap-1 relative bg-indigo-600 md:bg-indigo-500 hover:bg-indigo-500 text-white rounded-2xl md:rounded-full p-3 md:p-2 -mt-10 md:mt-0 shadow-lg shadow-indigo-500/40 md:shadow-indigo-500/20 border border-indigo-400/30 md:border-transparent transition-all transform hover:scale-105 active:scale-95"
+          className="group flex flex-col items-center justify-center gap-1 relative bg-gradient-to-b from-indigo-600 to-indigo-700 md:bg-indigo-500 hover:from-indigo-500 hover:to-indigo-600 text-white font-bold rounded-2xl md:rounded-full p-3 md:p-2 -mt-10 md:mt-0 shadow-lg shadow-indigo-500/50 md:shadow-indigo-500/30 border border-indigo-400/30 md:border-transparent transition-all transform hover:scale-105 active:scale-95 data-[theme=light]:from-indigo-500 data-[theme=light]:to-indigo-600 data-[theme=light]:hover:from-indigo-400 data-[theme=light]:hover:to-indigo-500 data-[theme=light]:shadow-indigo-400/50 data-[theme=light]:border-indigo-300/50"
           aria-label="Launch Live Interactive Demo"
         >
           <Play size={22} fill="currentColor" aria-hidden="true" className="md:w-[18px] md:h-[18px]" />
