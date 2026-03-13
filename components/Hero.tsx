@@ -107,9 +107,9 @@ export const Hero: React.FC<HeroProps> = ({ onLaunchDemo }) => {
 
         {/* Demo Button */}
         <div className="mt-8 md:mt-12 flex flex-col md:flex-row gap-4 items-center justify-center z-20 w-full px-4">
-          <button 
+            <button 
             onClick={handleDemoClick}
-            className="w-full md:w-auto flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-indigo-600/[0.9] data-[theme=light]:bg-indigo-500/[0.9] hover:bg-indigo-500 hover:data-[theme=light]:bg-indigo-400 text-white data-[theme=light]:text-gray-900 font-bold transition-all shadow-xl shadow-indigo-500/20 data-[theme=light]:shadow-indigo-500/30 group transform hover:scale-105 active:scale-95 border border-indigo-400/30 hover:border-indigo-400"
+            className="w-full md:w-auto flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-indigo-600/95 hover:bg-indigo-500 text-white font-bold transition-all shadow-xl shadow-indigo-500/30 group transform hover:scale-105 active:scale-95 border border-indigo-400/40 hover:border-indigo-400 backdrop-blur-md hover:backdrop-blur-lg data-[theme=light]:bg-indigo-500/95 data-[theme=light]:hover:bg-indigo-400 data-[theme=light]:shadow-indigo-400/40 data-[theme=light]:border-indigo-300/50 relative overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/20 before:to-transparent before:opacity-0 group-hover:before:opacity-100 before:transition-all before:duration-300 hover:shadow-2xl data-[theme=light]:hover:shadow-indigo-500/50 !text-white hover:!text-white font-semibold tracking-wide uppercase text-shadow-sm leading-tight"
           >
             <Play size={20} fill="currentColor" />
             Launch Live Demo
