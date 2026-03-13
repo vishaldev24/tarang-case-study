@@ -1,5 +1,5 @@
 import React from 'react';
-import logoSvg from '../assets/Icons/Adobe Express - file 3.svg';
+import logoPng from '../assets/Icons/Adobe Express - file 1.png';
 
 interface LogoProps {
   className?: string;
@@ -8,7 +8,7 @@ interface LogoProps {
 export const Logo: React.FC<LogoProps> = ({ className }) => {
   return (
     <img 
-      src={logoSvg}
+      src={logoPng}
       alt="Tarang Logo" 
       className={`${className} transition-all duration-500 hover:grayscale group-hover:grayscale cursor-pointer`}
       loading="lazy"
