@@ -61,7 +61,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onLaunchDemo }) => {
   return (
     <div className={`fixed z-50 transition-all duration-500 bottom-4 left-0 w-full md:bottom-8 md:left-1/2 md:w-auto md:-translate-x-1/2 px-4 md:px-0 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'} ${isScrolled ? 'shadow-2xl backdrop-blur-xl' : ''}`}>
       <nav 
-        className="glass-nav flex items-center justify-between md:justify-center w-full md:w-auto px-6 py-3 pb-6 md:px-6 md:py-4 md:pb-4 gap-0 md:gap-6 shadow-[0_-4px_20px_rgba(0,0,0,0.6)] md:shadow-2xl md:shadow-black/50 data-[theme=light]:shadow-gray-900/50 !border-t data-[theme=light]:!border-gray-200/50 !border-white/10 !border-x-0 !border-b-0 md:!border md:rounded-full rounded-none bg-black/98 data-[theme=light]:bg-white/90 md:bg-transparent backdrop-blur-xl data-[theme=light]:drop-shadow-xl transition-all duration-300 hover:backdrop-blur-2xl data-[theme=light]:hover:shadow-lg"
+        className="glass-nav flex items-center justify-between md:justify-center w-full md:w-auto px-6 py-3 pb-6 md:px-6 md:py-4 md:pb-4 gap-0 md:gap-6 shadow-[0_-4px_20px_rgba(0,0,0,0.6)] md:shadow-2xl md:shadow-black/50 data-[theme=light]:shadow-gray-900/50 border border-white/20 data-[theme=light]:border-gray-200/30 !border-t-0 md:!border md:rounded-full rounded-3xl bg-black/98 data-[theme=light]:bg-white/90 md:bg-transparent backdrop-blur-xl data-[theme=light]:drop-shadow-xl transition-all duration-300 hover:backdrop-blur-2xl data-[theme=light]:hover:shadow-lg"
         role="navigation" 
         aria-label="Main Navigation"
       >
@@ -71,7 +71,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onLaunchDemo }) => {
           className={`group flex flex-col items-center gap-1 relative focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-full p-2 md:p-1 ${activeSection === 'home' ? 'text-indigo-400' : ''}`}
           aria-label="Scroll to Home section"
         >
-        <Logo className="w-6 h-6 md:w-5 md:h-5 object-contain group-hover:scale-110 transition-transform drop-shadow-lg data-[theme=light]:drop-shadow-md" />
+        <Logo className="w-6 h-6 md:w-5 md:h-5 object-contain group-hover:scale-110 transition-transform filter drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)] data-[theme=light]:drop-shadow-[0_1px_3px_rgba(255,255,255,0.8)]" />
           <span className="hidden md:block text-[9px] text-indigo-300 opacity-0 group-hover:opacity-100 transition-opacity absolute -top-8 tracking-widest uppercase">Home</span>
         </button>
 
