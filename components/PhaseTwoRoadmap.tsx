@@ -34,7 +34,7 @@ export const PhaseTwoRoadmap: React.FC = () => {
   }, []);
 
   return (
-    <section id="roadmap" ref={containerRef} className="w-full py-32 px-4 glass-panel relative z-10 border-t border-white/5 overflow-hidden">
+    <section id="roadmap" ref={containerRef} className="w-full py-20 px-4 glass-panel relative z-10 border-t border-white/5 overflow-hidden">
         {/* Subtle Grid Background */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
 
@@ -53,7 +53,7 @@ export const PhaseTwoRoadmap: React.FC = () => {
         </div>
 
         {/* Cards Grid */}
-        <div className="grid md:grid-cols-3 gap-8 mb-24">
+        <div className="grid md:grid-cols-3 gap-8">
             
             {/* Card 1: Agentic Briefing Center */}
             <div className="roadmap-card group relative p-1 rounded-3xl bg-gradient-to-b from-white/10 to-transparent hover:from-purple-500/50 transition-all duration-500">
@@ -100,32 +100,6 @@ export const PhaseTwoRoadmap: React.FC = () => {
                 </div>
             </div>
 
-        </div>
-
-        {/* Designer's Note */}
-        <div className="designer-note max-w-4xl mx-auto">
-            <div className="relative bg-[#1A1A1A] border border-white/5 p-10 md:p-14 rounded-3xl overflow-hidden shadow-2xl">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 via-cyan-500 to-emerald-500" />
-                <div className="absolute -right-10 -bottom-10 opacity-5 transform rotate-12">
-                     <Quote size={200} className="text-white" />
-                </div>
-                
-                <div className="relative z-10 text-center">
-                    <Quote size={32} className="text-indigo-400 mx-auto mb-6 opacity-80 data-[theme=light]:opacity-100" />
-                    <h3 className="text-2xl md:text-3xl font-bold text-white data-[theme=light]:text-gray-900 mb-6 font-display">
-                        "Proactive Safety isn't about building higher walls; it's about giving the user a smarter guard dog."
-                    </h3>
-                    <p className="text-gray-300 data-[theme=light]:text-gray-800 text-lg leading-relaxed italic mb-8 font-semibold">
-                        Agentic Orchestration moves us from <strong>'User as Admin'</strong> to <strong>'User as Executive'</strong>. <br className="hidden md:block" />
-                        In Phase 2, the system handles the labor of safety—monitoring, filtering, and verifying—leaving the user with the dignity of choice and the freedom to connect.
-                    </p>
-                    <div className="flex items-center justify-center gap-3">
-                         <div className="h-px w-12 bg-white/20 data-[theme=light]:bg-gray-300" />
-                         <span className="text-xs text-gray-400 data-[theme=light]:text-gray-600 uppercase tracking-widest font-bold">Design Philosophy 2026</span>
-                         <div className="h-px w-12 bg-white/20 data-[theme=light]:bg-gray-300" />
-                    </div>
-                </div>
-            </div>
         </div>
 
       </div>
