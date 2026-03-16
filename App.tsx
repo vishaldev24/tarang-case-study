@@ -10,7 +10,7 @@ import { DesignSystem } from './components/DesignSystem';
 import { ImpactSection } from './components/ImpactSection';
 import { Gallery } from './components/Gallery';
 import { ThemeToggle } from './components/ThemeToggle';
-import { PortfolioNarrative } from './components/PortfolioNarrative';
+
 import { LivePreviewModal } from './components/LivePreviewModal';
 import { PhaseTwoRoadmap } from './components/PhaseTwoRoadmap';
 import gsap from 'gsap';
@@ -43,7 +43,7 @@ const App: React.FC = () => {
       {/* Main Content */}
       <main className="relative z-10 flex flex-col items-center w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 pb-32">
         <Hero onLaunchDemo={() => setIsDemoOpen(true)} />
-        <PortfolioNarrative />
+
         <BentoGrid />
         <ShieldSection />
         <SystemArchitecture />
