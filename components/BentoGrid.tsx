@@ -25,7 +25,9 @@ export const BentoGrid: React.FC = () => {
   }, []);
 
   return (
-    <section id="strategy" ref={containerRef} className="w-full py-32 px-4 relative z-10">
+
+  <section id="strategy" ref={containerRef} className="w-full py-32 px-4 relative z-10">
+
       <div className="max-w-7xl mx-auto">
         <div className="mb-16 flex flex-col md:flex-row justify-between items-end gap-6">
           <div>

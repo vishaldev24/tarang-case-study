@@ -22,7 +22,9 @@ export const DesignSystem: React.FC = () => {
   }, []);
 
   return (
-    <section id="design-system" ref={containerRef} className="w-full py-32 px-4 bg-[#080808] relative z-10 border-t border-white/5">
+
+  <section id="about" ref={containerRef} className="w-full py-32 px-4 bg-[#080808] relative z-10 border-t border-white/5">
+
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20 ds-section">
           <span className="text-indigo-400 font-mono text-sm tracking-widest uppercase mb-4 block">Foundations</span>

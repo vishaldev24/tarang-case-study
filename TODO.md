@@ -1,10 +1,19 @@
-# Gallery Update Progress
+# Nav Active State Implementation
 
-- [x] Analyze Gallery.tsx (carousel in Shield frame)
-- [x] Update appFrames array (remove carousel, add 4 Shield frames)
-- [x] Remove CarouselModal component
-- [x] Remove activeCarousel state and modal render  
-- [x] Remove click handlers and carousel badge
-- [x] Verify 9 frames scroll + drag works (HMR updates confirm)
-- [x] Update TODO.md with completion
-- [x] Test in browser localhost:3000 (Vite hot-reload active)
+
+
+
+**Status:** 5/5 ✅ Complete! Nav reorder + glassmorphic liquid indicator with scroll-active states.
+
+
+
+
+## Steps:
+- [ ] 1. Add section IDs to App.tsx components
+- [ ] 2. Read Navigation.tsx for current icons/order
+- [ ] 3. Reorder icons: About before Impact
+- [ ] 4. Add scroll observer + glassmorphic active indicator
+- [ ] 5. Liquid GSAP transition effect + test scroll
+
+**Live:** http://localhost:3000
+

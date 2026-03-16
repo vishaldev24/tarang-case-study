@@ -22,7 +22,9 @@ export const ImpactSection: React.FC = () => {
   }, []);
 
   return (
-    <section id="impact" ref={containerRef} className="w-full py-32 px-4 bg-black relative z-10 border-t border-white/5">
+
+  <section id="impact" ref={containerRef} className="w-full py-32 px-4 bg-black relative z-10 border-t border-white/5">
+
       <div className="max-w-7xl mx-auto">
         <div className="mb-20 text-center impact-item">
           <span className="text-emerald-400 font-mono text-sm tracking-widest uppercase mb-4 block">Ethics & Engineering</span>
