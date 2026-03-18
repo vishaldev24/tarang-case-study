@@ -202,7 +202,7 @@ export const Gallery: React.FC = () => {
     <section 
       id="gallery" 
       ref={containerRef} 
-      className="w-full h-screen min-h-[700px] overflow-hidden flex flex-col justify-center relative bg-[#0D0D0D] py-20 cursor-grab active:cursor-grabbing"
+      className="w-full h-[70vh] md:h-[60vh] max-h-[500px] overflow-hidden flex flex-col justify-center relative bg-[#0D0D0D] py-12 cursor-grab active:cursor-grabbing"
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
@@ -229,11 +229,11 @@ export const Gallery: React.FC = () => {
         </div>
       </div>
 
-      <div ref={sliderRef} className="flex gap-4 md:gap-6 px-2 md:px-12 items-center h-[55vh] md:h-[65vh]"> 
+      <div ref={sliderRef} className="flex gap-4 md:gap-6 px-2 md:px-12 items-center h-[60%] max-h-[280px] md:max-h-[320px]"> 
         {appFrames.map((frame, index) => (
           <div 
             key={index} 
-            className="flex-shrink-0 w-[180px] md:w-[220px] h-full flex flex-col relative group"
+            className="flex-shrink-0 w-[150px] md:w-[180px] h-[85%] flex flex-col relative group"
           >
              {/* Frame Container */}
             <div className="flex-grow relative transition-all duration-500 group-hover:scale-[1.02] transform-gpu">
