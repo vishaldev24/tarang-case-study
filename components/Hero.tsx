@@ -75,10 +75,14 @@ export const Hero: React.FC<HeroProps> = ({ onLaunchDemo }) => {
           </div>
         </div>
 
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 rounded-full border border-indigo-400/30 bg-indigo-500/10 backdrop-blur-md mb-6 md:mb-8">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 rounded-full border border-indigo-400/30 bg-indigo-500/10 backdrop-blur-md mb-2 md:mb-4">
           <div className="w-1.5 h-1.5 rounded-full bg-indigo-400"></div>
           <span className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-indigo-300 font-medium">Lead Product Designer</span>
         </div>
+        
+        <p className="text-indigo-400/80 text-sm md:text-base font-light tracking-wide mb-4 md:mb-6 text-gray-400 dark:text-gray-400">
+          Vishal Rathod · Product Designer · Hyderabad · 2026
+        </p>
         
         <div style={{ perspective: '1000px' }} className="w-full">
           <h1 

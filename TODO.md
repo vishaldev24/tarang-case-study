@@ -1,19 +1,18 @@
-# Nav Active State Implementation
+# Spacing Gap Fix - Error Fix Required
 
+**Status:** Edits broke JSX syntax (missing `<section>` tag)
 
+**Problem:**
+Previous `edit_file` removed `<section` tag, causing:
+- `')' expected`
+- `JSX expressions must have one parent element`
 
+**Fix Plan:**
+1. Restore proper JSX structure for both files
+2. Change `py-32` → `py-20` correctly
+3. Update App.tsx `pb-32` → `pb-20`
 
-**Status:** 5/5 ✅ Complete! Nav reorder + glassmorphic liquid indicator with scroll-active states.
-
-
-
-
-## Steps:
-- [ ] 1. Add section IDs to App.tsx components
-- [ ] 2. Read Navigation.tsx for current icons/order
-- [ ] 3. Reorder icons: About before Impact
-- [ ] 4. Add scroll observer + glassmorphic active indicator
-- [ ] 5. Liquid GSAP transition effect + test scroll
-
-**Live:** http://localhost:3000
-
+**Next Steps:**
+- [ ] Fix BentoGrid.tsx JSX
+- [ ] Fix ImpactSection.tsx JSX
+- [ ] Update App.tsx main padding

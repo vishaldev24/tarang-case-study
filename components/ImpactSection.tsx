@@ -22,9 +22,7 @@ export const ImpactSection: React.FC = () => {
   }, []);
 
   return (
-
-  <section id="impact" ref={containerRef} className="w-full py-32 px-4 bg-black relative z-10 border-t border-white/5">
-
+    <section id="impact" ref={containerRef} className="w-full py-20 px-4 bg-black relative z-10 border-t border-white/5">
       <div className="max-w-7xl mx-auto">
         <div className="mb-20 text-center impact-item">
           <span className="text-emerald-400 font-mono text-sm tracking-widest uppercase mb-4 block">Ethics & Engineering</span>
@@ -127,7 +125,7 @@ export const ImpactSection: React.FC = () => {
         </div>
 
         {/* Comparison Grid (Impact Metrics) */}
-        <div className="impact-item mt-24 mb-24">
+        <div className="impact-item mt-16 mb-12">
             <h3 className="text-2xl font-bold text-white mb-8 text-center">Impact Metrics: Standard vs. Sustainable UX</h3>
             <div className="grid md:grid-cols-3 gap-6">
                  {/* Battery */}
@@ -202,3 +200,4 @@ export const ImpactSection: React.FC = () => {
     </section>
   );
 };
+

@@ -25,9 +25,7 @@ export const BentoGrid: React.FC = () => {
   }, []);
 
   return (
-
-  <section id="strategy" ref={containerRef} className="w-full py-32 px-4 relative z-10">
-
+    <section id="strategy" ref={containerRef} className="w-full py-20 px-4 relative z-10">
       <div className="max-w-7xl mx-auto">
         <div className="mb-16 flex flex-col md:flex-row justify-between items-end gap-6">
           <div>
@@ -41,7 +39,7 @@ export const BentoGrid: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 grid-rows-[auto_auto] lg:grid-rows-2 h-auto lg:h-[700px]">
           
-          {/* TILE 1: THE PROBLEM (Focus on points) */}
+          {/* TILE 1: THE PROBLEM */}
           <div className="bento-item col-span-1 md:col-span-2 lg:row-span-2 bg-[#0F0F0F] rounded-3xl">
             <TiltContainer className="h-full">
               <div className="h-full glass-panel rounded-3xl p-10 relative overflow-hidden group hover:border-red-500/20 transition-colors flex flex-col justify-between">
@@ -96,11 +94,11 @@ export const BentoGrid: React.FC = () => {
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                        <p className="text-white text-sm font-bold mb-1">Intent {'>'} Engagement</p>
+                        <p className="text-white text-sm font-bold mb-1">Intent → Engagement</p>
                         <p className="text-gray-400 text-xs">Serve a specific goal, not just time-on-screen.</p>
                     </div>
                     <div>
-                        <p className="text-white text-sm font-bold mb-1">Control {'>'} Enforcement</p>
+                        <p className="text-white text-sm font-bold mb-1">Control → Enforcement</p>
                         <p className="text-gray-400 text-xs">Safety is a preference, not a mandate.</p>
                     </div>
                   </div>
@@ -157,3 +155,4 @@ export const BentoGrid: React.FC = () => {
     </section>
   );
 };
+

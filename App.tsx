@@ -10,6 +10,7 @@ import { DesignSystem } from './components/DesignSystem';
 import { ImpactSection } from './components/ImpactSection';
 import { Gallery } from './components/Gallery';
 import { ThemeToggle } from './components/ThemeToggle';
+import { PivotCallout } from './components/PivotCallout';
 
 import { LivePreviewModal } from './components/LivePreviewModal';
 import { PhaseTwoRoadmap } from './components/PhaseTwoRoadmap';
@@ -41,16 +42,17 @@ const App: React.FC = () => {
       <ThemeToggle currentTheme={theme} setTheme={setTheme} />
 
       {/* Main Content */}
-      <main className="relative z-10 flex flex-col items-center w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 pb-32">
+      <main className="relative z-10 flex flex-col items-center w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         <Hero onLaunchDemo={() => setIsDemoOpen(true)} />
 
         <BentoGrid />
+        <PivotCallout />
         <ShieldSection />
         <SystemArchitecture />
         <ProcessGrit />
         <DesignSystem />
         <ImpactSection />
-        <div className="w-full py-20">
+        <div className="w-full py-12">
           <Gallery />
         </div>
         <PhaseTwoRoadmap />
@@ -70,3 +72,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+
