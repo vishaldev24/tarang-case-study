@@ -78,7 +78,11 @@ const appFrames = [
 
 
 
-export const Gallery: React.FC = () => {
+interface GalleryProps {
+  openImageModal?: (src: string, title: string) => void;
+}
+
+export const Gallery: React.FC<GalleryProps> = ({ openImageModal }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -202,7 +206,7 @@ export const Gallery: React.FC = () => {
     <section 
       id="gallery" 
       ref={containerRef} 
-      className="w-full h-[70vh] md:h-[60vh] max-h-[500px] overflow-hidden flex flex-col justify-center relative bg-[#0D0D0D] py-12 cursor-grab active:cursor-grabbing"
+      className="w-full h-[70vh] md:h-[60vh] max-h-[500px] overflow-visible flex flex-col justify-center relative bg-[#0D0D0D] py-12 cursor-grab active:cursor-grabbing"
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
@@ -239,7 +243,8 @@ export const Gallery: React.FC = () => {
             <div className="flex-grow relative transition-all duration-500 group-hover:scale-[1.02] transform-gpu">
                
                {/* Simple Image Container */}
-               <div className="w-full h-full bg-[#111] rounded-lg overflow-hidden relative shadow-2xl">
+               <div className="w-full h-full bg-[#111] rounded-lg overflow-visible relative shadow-2xl z-10">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none z-0"></div>
                   {/* Actual Image */}
                   <img 
                     src={frame.img} 
@@ -248,7 +253,8 @@ export const Gallery: React.FC = () => {
                     loading="eager"
                     decoding="sync"
                     fetchPriority="high"
-                    className="gallery-img w-full h-full object-contain bg-black"
+                    className="gallery-img w-full h-full object-contain bg-black cursor-pointer hover:brightness-105 transition-all duration-200 hover:shadow-[0_8px_32px_rgba(99,102,241,0.3)] relative z-20"
+                    onClick={() => openImageModal?.(frame.img, frame.title)}
                     onLoad={(e) => {
                       console.log('Image loaded:', frame.img);
                       ScrollTrigger.refresh();

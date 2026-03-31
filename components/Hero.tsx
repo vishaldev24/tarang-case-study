@@ -14,7 +14,7 @@ export const Hero: React.FC<HeroProps> = ({ onLaunchDemo }) => {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-  const DEMO_URL = "https://ai.studio/apps/drive/1OVucCUcRgRfx-0G1GNBuc-AyJ1RZvWzn?fullscreenApplet=true";
+  const DEMO_URL = "https://revamp-shush-22720965.figma.site/";
 
   useEffect(() => {
     const ctx = gsap.context(() => {

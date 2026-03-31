@@ -11,6 +11,7 @@ import { ImpactSection } from './components/ImpactSection';
 import { Gallery } from './components/Gallery';
 import { ThemeToggle } from './components/ThemeToggle';
 import { PivotCallout } from './components/PivotCallout';
+import { ImageModal } from './components/ImageModal';
 
 import { LivePreviewModal } from './components/LivePreviewModal';
 import { PhaseTwoRoadmap } from './components/PhaseTwoRoadmap';
@@ -22,6 +23,7 @@ gsap.registerPlugin(ScrollTrigger);
 const App: React.FC = () => {
   const [theme, setTheme] = useState('light');
   const [isDemoOpen, setIsDemoOpen] = useState(false);
+  const [imageModal, setImageModal] = useState<{open: boolean, src: string, title: string}>({open: false, src: '', title: ''});
 
   useEffect(() => {
     ScrollTrigger.refresh();
@@ -42,20 +44,32 @@ const App: React.FC = () => {
       <ThemeToggle currentTheme={theme} setTheme={setTheme} />
 
       {/* Main Content */}
-      <main className="relative z-10 flex flex-col items-center w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        <Hero onLaunchDemo={() => setIsDemoOpen(true)} />
+      <main className="relative z-10 flex flex-col items-center w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 pb-[140px] md:pb-[124px]">
+        <section id="home" className="w-full pb-[100px] md:pb-[100px]">
+          <Hero onLaunchDemo={() => setIsDemoOpen(true)} />
+        </section>
 
-        <BentoGrid />
-        <PivotCallout />
-        <ShieldSection />
-        <SystemArchitecture />
-        <ProcessGrit />
-        <DesignSystem />
-        <ImpactSection />
-        <div className="w-full py-12">
-          <Gallery />
-        </div>
-        <PhaseTwoRoadmap />
+        <section id="strategy" className="w-full pb-[100px] md:pb-[100px]">
+          <BentoGrid />
+        </section>
+        <section id="shield" className="w-full pb-[100px] md:pb-[100px]">
+          <PivotCallout />
+          <ShieldSection />
+        </section>
+        <section id="system" className="w-full pb-[100px] md:pb-[100px]">
+          <SystemArchitecture />
+        </section>
+        <section id="impact" className="w-full pb-[100px] md:pb-[100px]">
+          <ProcessGrit />
+          <DesignSystem />
+          <ImpactSection />
+        </section>
+        <section id="gallery" className="w-full py-20 md:py-28 mb-20 md:mb-28 pb-[100px] md:pb-[100px]">
+          <Gallery openImageModal={(src, title) => setImageModal({open: true, src, title})} />
+        </section>
+        <section id="about" className="w-full pb-[100px] md:pb-[100px]">
+          <PhaseTwoRoadmap />
+        </section>
       </main>
 
       {/* High-Fidelity Prototype Modal */}
@@ -64,9 +78,18 @@ const App: React.FC = () => {
         onClose={() => setIsDemoOpen(false)} 
         theme={theme} 
       />
+      
+      {/* Gallery Image Modal */}
+      <ImageModal 
+        isOpen={imageModal.open}
+        onClose={() => setImageModal({open: false, src: '', title: ''})}
+        imageSrc={imageModal.src}
+        imageTitle={imageModal.title}
+      />
 
       {/* Navigation */}
       <Navigation onLaunchDemo={() => setIsDemoOpen(true)} />
+
     </div>
   );
 };
